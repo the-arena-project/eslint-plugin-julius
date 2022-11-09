@@ -1,5 +1,5 @@
 /**
- * @fileoverview Any &#34;for&#34; loop statement is not allowed.
+ * @fileoverview Any "for" loop statement is not allowed.
  * @author ilios Galil
  */
 "use strict";
