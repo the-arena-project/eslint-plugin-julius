@@ -18,21 +18,59 @@ npm install @thearenaproject/eslint-plugin --save-dev
 
 ## Usage
 
-Add `arena` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+Add the eslint plugin to the plugins section of your `.eslintrc.js` configuration file.
 
-```json
+```js
 {
-  "plugins": ["@thearenaproject/eslint-plugin"]
+  plugins: ["@thearenaproject/eslint-plugin"];
 }
 ```
 
-Then configure the rules you want to use under the rules section.
+Then you can configure the rules globally or per file.
 
-```json
+globally:
+
+```js
 {
-  "rules": {
-    "@thearenaproject/no-for-loops": "error"
+  rules: {
+    '@thearenaproject/no-for-loops': 'error',
+    '@thearenaproject/no-methods-or-properties': 'error',
   }
+}
+```
+
+per file:
+
+```js
+{
+  overrides: [
+    {
+      files: ['round-00/*.ts'],
+      excludedFiles: '*.test.js',
+      rules: {
+        '@thearenaproject/no-methods-or-properties': ['error', {
+          allowed: [
+            // allow ".log" only on the "console" object
+            ['log', 'console'],
+          ],
+        }],
+      },
+    },
+    {
+      files: ['round-01/*.ts'],
+      excludedFiles: '*.test.js',
+      rules: {
+        '@thearenaproject/no-methods-or-properties': ['error', {
+          allowed: [
+            ['stdout', 'process'], // allow "process.stdout" pair
+            ['write', 'stdout'], // allow "stdout.write" pair
+            'log', // allow any ".log" in a file
+          ],
+        }],
+      },
+    },
+    ...
+  ],
 }
 ```
 
@@ -44,24 +82,25 @@ Then configure the rules you want to use under the rules section.
 
 ## Basics
 
-Each rule is composed of 3 parts and only the first is mandatory:
+Each rule is composed of 3 parts and only the 1st is mandatory:
 
-1. The rule file under `./lib/rules` folder.
+1. The rule file under `./lib/rules` folder. (mandatory)
 2. The test file under `./tests/lib/rules` folder.
 3. The doc file under `./docs/rules` folder.
 
-## Adding new rules with the generator (no, faux, ❌)
+## Adding new rules with the generator (no, false, faux, ❌)
 
-**Do not** use this https://github.com/eslint/generator-eslint because it doesn't generate a plugin or rule with our namespace (@thearenaproject). This plugin and its rules were generated with the generator, BUT multiple manual changes where required, so just read the next.
+**Do not** use this https://github.com/eslint/generator-eslint because it doesn't generate a plugin or rule with our namespace (@thearenaproject). Even if this plugin and its rules were generated with the generator, multiple manual changes were required, so don't go this way and just read the next section ⬇️.
 
-## Adding new rules the right way (yes, ✅)
+## Adding new rules the right way (yes, true, vrai, ✅)
 
-For now just copy an existing rule/test/doc file, rename it and update its content, hardcore, old style, fuck-off.
+For now just copy an existing rule/test/doc file, rename it and update its content.\
+Yep hardcore, old style, now fuck-off.
 
 ## Some reading material is here :
 
 - https://eslint.org/docs/latest/developer-guide/working-with-rules
 - https://eslint.org/docs/latest/developer-guide use the search to find existing eslint rules and get inspired :P
 - https://insideops.wordpress.com/2015/12/08/creating-custom-rules-for-eslint/
-- https://astexplorer.net/#/gist/f121a2a9edea666731e75aae1d013c9d/latest
-- and many other link that i closed the chrome tabs already so go google your self
+- https://astexplorer.net (don't forget to switch to Javascript from the top menu)
+- ... and many other pages, that I already closed their browser tabs, sorry 🫠
