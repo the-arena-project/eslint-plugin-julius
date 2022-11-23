@@ -63,4 +63,5 @@ For now just copy an existing rule/test/doc file, rename it and update its conte
 - https://eslint.org/docs/latest/developer-guide/working-with-rules
 - https://eslint.org/docs/latest/developer-guide use the search to find existing eslint rules and get inspired :P
 - https://insideops.wordpress.com/2015/12/08/creating-custom-rules-for-eslint/
+- https://astexplorer.net/#/gist/f121a2a9edea666731e75aae1d013c9d/latest
 - and many other link that i closed the chrome tabs already so go google your self
