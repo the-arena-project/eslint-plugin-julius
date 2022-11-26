@@ -1,7 +1,7 @@
 {
-  "name": "@thearenaproject/eslint-plugin",
+  "name": "@thearenaproject/eslint-plugin-julius",
   "version": "0.0.0",
-  "description": "Eslint rules for TheArenaProject",
+  "description": "Eslint rules for Julius @TheArenaProject",
   "keywords": [
     "eslint",
     "eslintplugin",
